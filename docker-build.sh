@@ -1,1 +1,1 @@
-docker build --tag=paulbuis/python-jupyter .
+docker build --tag=paulbuis/jupyter-beakerx .
