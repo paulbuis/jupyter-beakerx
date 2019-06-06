@@ -1,6 +1,6 @@
 # Copyright (c) Jupyter Development Team.
 # Distributed under the terms of the Modified BSD License.
-ARG BASE_CONTAINER=jupyter/minimal-notebook
+ARG BASE_CONTAINER=paulbuis/minimal-notebook
 FROM $BASE_CONTAINER
 
 LABEL maintainer="Paul Buis <00pebuis@bsu.edu>"
@@ -9,10 +9,12 @@ USER root
 
 # ffmpeg for matplotlib anim
 RUN apt-get update && \
+    apt-get dist-upgrade -yq && \
     apt-get install -y --no-install-recommends \
 	ffmpeg \
 	python-numpy \
 	libicu-dev && \
+    apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
 USER $NB_UID
@@ -46,36 +48,29 @@ RUN conda install --quiet --yes \
     'beautifulsoup4=4.7.*' \
     'protobuf=3.7.*' \
     'xlrd'  \
-    'openjdk>11.0.0' \
+    'openjdk=8.0.144' \
     'pygraphviz=1.5' \
     'nodejs=11.14.*' \
     'pyyaml' \
+    'jupyter_contrib_nbextensions=0.5.1' \
+    'jupyter_nbextensions_configurator=0.4.1' \
+    'ipyleaflet=0.10.2' \
     'beakerx=1.4.*' && \
     conda remove --quiet --yes --force qt pyqt && \
-    conda clean --all -f -y && \
+    conda clean --all -f -y
 #
 # Already included ???
 # nbconvert
-# ipywidgets
-# ipyleaflet
-# widgetsnbextension
-# jupyter_contrib_nbextensions
-# jupyter_nbextensions_configurator
 # See also, https://github.com/mauhai/awesome-juptyerlab
 
+# Activate ipywidgets extension in the environment that runs the notebook server
+# Also activate ipywidgets extension for JupyterLab
+# Check this URL for most recent compatibilities
+# https://github.com/jupyter-widgets/ipywidgets/tree/master/packages/jupyterlab-manager
 
-# for ijavascript kernel,
-#RUN npm install -g ijavascript && \
-#     ijsinstall --install=global
-#
-#
-#
-    # Activate ipywidgets extension in the environment that runs the notebook server
-    jupyter nbextension enable --py widgetsnbextension --sys-prefix && \
-    # Also activate ipywidgets extension for JupyterLab
-    # Check this URL for most recent compatibilities
-    # https://github.com/jupyter-widgets/ipywidgets/tree/master/packages/jupyterlab-manager
-    jupyter labextension install @jupyter-widgets/jupyterlab-manager@^0.38.1 && \
+USER $NB_UID
+RUN jupyter nbextension enable --py widgetsnbextension --sys-prefix && \
+    jupyter labextension install @jupyter-widgets/jupyterlab-manager@^0.38.1 &&\
     jupyter labextension install jupyterlab_bokeh@0.6.3 && \
     jupyter labextension install beakerx-jupyterlab && \
     npm cache clean --force && \
