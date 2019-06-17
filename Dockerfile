@@ -27,7 +27,7 @@ RUN conda install --quiet --yes \
     'ipywidgets=7.4*' \
     'pandas=0.24*' \
     'numexpr=2.6*' \
-    'matplotlib=3.0*' \
+    'matplotlib=3.1.0' \
     'scipy=1.2*' \
     'seaborn=0.9*' \
     'scikit-learn=0.20*' \
@@ -48,7 +48,7 @@ RUN conda install --quiet --yes \
     'beautifulsoup4=4.7.*' \
     'protobuf=3.7.*' \
     'xlrd'  \
-    'openjdk=8.0.144' \
+    'openjdk>11.0.0' \
     'pygraphviz=1.5' \
     'nodejs=11.14.*' \
     'pyyaml' \
