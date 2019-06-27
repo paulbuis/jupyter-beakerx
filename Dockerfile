@@ -1,6 +1,6 @@
 # Copyright (c) Jupyter Development Team.
 # Distributed under the terms of the Modified BSD License.
-ARG BASE_CONTAINER=paulbuis/minimal-notebook
+ARG BASE_CONTAINER=jupyter/minimal-notebook
 FROM $BASE_CONTAINER
 
 LABEL maintainer="Paul Buis <00pebuis@bsu.edu>"
@@ -27,7 +27,7 @@ RUN conda install --quiet --yes \
     'ipywidgets=7.4*' \
     'pandas=0.24*' \
     'numexpr=2.6*' \
-    'matplotlib=3.1.0' \
+    'matplotlib=3.0*' \
     'scipy=1.2*' \
     'seaborn=0.9*' \
     'scikit-learn=0.20*' \
@@ -49,6 +49,9 @@ RUN conda install --quiet --yes \
     'protobuf=3.7.*' \
     'xlrd'  \
     'openjdk>11.0.0' \
+    'autopep8' \
+    'yapf' \
+    'rise' \
     'pygraphviz=1.5' \
     'nodejs=11.14.*' \
     'pyyaml' \
@@ -57,7 +60,8 @@ RUN conda install --quiet --yes \
     'ipyleaflet=0.10.2' \
     'beakerx=1.4.*' && \
     conda remove --quiet --yes --force qt pyqt && \
-    conda clean --all -f -y
+    conda clean --all -f -y && \
+    pip install pyicu
 #
 # Already included ???
 # nbconvert
@@ -70,6 +74,7 @@ RUN conda install --quiet --yes \
 
 USER $NB_UID
 RUN jupyter nbextension enable --py widgetsnbextension --sys-prefix && \
+#   jupyter nbextension install rise --py --sys-prefix
     jupyter labextension install @jupyter-widgets/jupyterlab-manager@^0.38.1 &&\
     jupyter labextension install jupyterlab_bokeh@0.6.3 && \
     jupyter labextension install beakerx-jupyterlab && \

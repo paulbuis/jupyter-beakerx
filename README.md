@@ -1,4 +1,3 @@
-[![docker pulls](https://img.shields.io/docker/pulls/jupyter/minimal-notebook.svg)](https://hub.docker.com/r/jupyter/minimal-notebook/) [![image metadata](https://images.microbadger.com/badges/image/jupyter/scipy-notebook.svg)](https://microbadger.com/images/jupyter/scipy-notebook "jupyter/scipy-notebook image metadata")
 
 # Dockerfile based on Jupyter Notebook Scientific Python Stack with BeakerX added
 
