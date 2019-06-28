@@ -74,7 +74,7 @@ RUN conda install --quiet --yes \
 
 USER $NB_UID
 RUN jupyter nbextension enable --py widgetsnbextension --sys-prefix && \
-    jupyter nbextension enable --sys-prefix && \
+    jupyter nbextension enable rise/main --sys-prefix && \
     jupyter labextension install @jupyter-widgets/jupyterlab-manager@^0.38.1 &&\
     jupyter labextension install jupyterlab_bokeh@0.6.3 && \
     jupyter labextension install beakerx-jupyterlab && \
