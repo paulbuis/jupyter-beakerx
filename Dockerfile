@@ -27,7 +27,7 @@ RUN conda install --quiet --yes \
     'ipywidgets=7.4*' \
     'pandas=0.24*' \
     'numexpr=2.6*' \
-    'matplotlib=3.0*' \
+    'matplotlib=3.1' \
     'scipy=1.2*' \
     'seaborn=0.9*' \
     'scikit-learn=0.20*' \
@@ -74,7 +74,7 @@ RUN conda install --quiet --yes \
 
 USER $NB_UID
 RUN jupyter nbextension enable --py widgetsnbextension --sys-prefix && \
-#   jupyter nbextension install rise --py --sys-prefix
+    jupyter nbextension enable --sys-prefix && \
     jupyter labextension install @jupyter-widgets/jupyterlab-manager@^0.38.1 &&\
     jupyter labextension install jupyterlab_bokeh@0.6.3 && \
     jupyter labextension install beakerx-jupyterlab && \
