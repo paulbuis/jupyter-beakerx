@@ -24,7 +24,7 @@ USER $NB_UID
 # use notebook-friendly backends in these images
 RUN conda install --quiet --yes \
     'conda-forge::blas=*=openblas' \
-    'ipywidgets=7.4*' \
+    'ipywidgets=7.5*' \
     'pandas=0.24*' \
     'numexpr=2.6*' \
     'matplotlib=3.1' \
@@ -75,8 +75,8 @@ RUN conda install --quiet --yes \
 USER $NB_UID
 RUN jupyter nbextension enable --py widgetsnbextension --sys-prefix && \
     jupyter nbextension enable rise/main --sys-prefix && \
-    jupyter labextension install @jupyter-widgets/jupyterlab-manager@^0.38.1 &&\
-    jupyter labextension install jupyterlab_bokeh@0.6.3 && \
+    jupyter labextension install @jupyter-widgets/jupyterlab-manager@^1.0.0 &&\
+    jupyter labextension install jupyterlab_bokeh@1.0.0 && \
     jupyter labextension install beakerx-jupyterlab && \
     npm cache clean --force && \
     rm -rf $CONDA_DIR/share/jupyter/lab/staging && \
