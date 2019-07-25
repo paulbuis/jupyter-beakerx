@@ -27,7 +27,7 @@ RUN conda install --quiet --yes \
     'ipywidgets=7.5*' \
     'pandas=0.24*' \
     'numexpr=2.6*' \
-    'matplotlib=3.1' \
+    'matplotlib=3.1.1' \
     'scipy=1.2*' \
     'seaborn=0.9*' \
     'scikit-learn=0.20*' \
@@ -47,19 +47,19 @@ RUN conda install --quiet --yes \
     'vincent=0.4.*' \
     'beautifulsoup4=4.7.*' \
     'protobuf=3.7.*' \
-    'xlrd'  \
+    'xlrd=1.2.0'  \
     'openjdk>11.0.0' \
-    'autopep8' \
-    'yapf' \
-    'rise' \
+    'autopep8=1.4.4' \
+    'yapf=0.27.0' \
+    'rise=5.5.1' \
     'pygraphviz=1.5' \
     'nodejs=11.14.*' \
-    'pyyaml' \
+    'pyyaml=5.1.1' \
     'jupyter_contrib_nbextensions=0.5.1' \
     'jupyter_nbextensions_configurator=0.4.1' \
     'ipyleaflet=0.10.2' \
     'beakerx=1.4.*' && \
-    conda remove --quiet --yes --force qt pyqt && \
+#    conda remove --quiet --yes --force qt pyqt && \
     conda clean --all -f -y && \
     pip install pyicu
 #
@@ -84,16 +84,6 @@ RUN jupyter nbextension enable --py widgetsnbextension --sys-prefix && \
     rm -rf /home/$NB_USER/.node-gyp && \
     fix-permissions $CONDA_DIR && \
     fix-permissions /home/$NB_USER
-
-# Install facets which does not have a pip or conda package at the moment
-#RUN cd /tmp && \
-#    git clone https://github.com/PAIR-code/facets.git && \
-#    cd facets && \
-#    jupyter nbextension install facets-dist/ --sys-prefix && \
-#    cd && \
-#    rm -rf /tmp/facets && \
-#    fix-permissions $CONDA_DIR && \
-#    fix-permissions /home/$NB_USER
 
 # Import matplotlib the first time to build the font cache.
 ENV XDG_CACHE_HOME /home/$NB_USER/.cache/

@@ -6,7 +6,7 @@ set of conda packages (some are different versions) from the Conda-Forge channel
 
 Also added BeakerX from [twosigma/beakerx](https://github.com/twosigma/beakerx) which adds kernels for Java, Groovy, Kotlin, and Scala
 
-Using updated version of Java relative to twosigman/beakerx
+Using updated version of Java relative to twosigma/beakerx
 
 ## Aditional Anaconda-Forge Items
 - openjdk>11.0.0
@@ -16,6 +16,7 @@ Using updated version of Java relative to twosigman/beakerx
 - yapf
 - rise
 
-See also:
+## See also:
+
 * [Jupyter Docker Stacks on ReadTheDocs](http://jupyter-docker-stacks.readthedocs.io/en/latest/index.html)
 * [Selecting an Image :: Core Stacks :: jupyter/minimal-notebook](http://jupyter-docker-stacks.readthedocs.io/en/latest/using/selecting.html#jupyter-minimal-notebook)
